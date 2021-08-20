@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://ftx.bsks.ac.kr//include/css/librery/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
+    <link rel="stylesheet" href="https://ftx.bsks.ac.kr//include/css/common.css"/>
+    <link rel="stylesheet" href="https://ftx.bsks.ac.kr//include/css/base.css"/>
+    <link rel="stylesheet" href="https://ftx.bsks.ac.kr//include/css/main.css"/>
+    <link rel="stylesheet" href="https://ftx.bsks.ac.kr//include/css/layout.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+</head>
+<body>
+<div id="main_header">
+    <div class="logo_div">
+        <img src="https://ftx.bsks.ac.kr/images/main/main_logo.svg" alt="부산경상대학교 현장실습운영관리시스템" />
+        <a href="#" class="pop_bt" role="center"><img src="https://ftx.bsks.ac.kr/images/main/main_logo2.png" alt="링크플러스" class="linc_logo" /></a>
+    </div>
+</div>
+<div class="main_con" style="width: 800px;">
+    <div class="mt_10 search_box pd_10">
+        <h2>회원가입</h2>
+    </div>
+    <form method="post">
+        <table class="base2 mt_10" style="width: 800px; margin: 10px auto;">
+            <colgroup>
+                <col style="width: 100px;" />
+                <col style="width: 300px;" />
+                <col style="width: 100px;" />
+                <col style="width: 300px;" />
+            </colgroup>
+            <tbody>
+                <tr>
+                    <th>아이디</th>
+                    <td><input class="text" type="text" name="student_id" required/></td>
+                    <th>비밀번호</th>
+                    <td><input class="text" type="password" name="student_pswd" required/></td>
+                </tr>
+                <tr>
+                    <th>이름</th>
+                    <td><input class="text" type="text" name="student_name" required/></td>
+                    <th>생년월일</th>
+                    <td><input class="text" type="date" name="student_birth" required/></td>
+                </tr>
+                <tr>
+                    <th>성별</th>
+                    <td>
+                        <select class="selection-handle" name="student_gender">
+                            <option value="M">남자</option>
+                            <option value="F">여자</option>
+                        </select>
+                    </td>
+                    <th>휴대폰번호</th>
+                    <td><input class="text" type="tel" name="student_hp" required/></td>
+                </tr>
+                <tr>
+                    <th>전화번호</th>
+                    <td><input class="text" type="tel" name="student_phone" /></td>
+                    <th>이메일</th>
+                    <td><input class="text" type="email" name="student_email" /></td>
+                </tr>
+                <tr>
+                    <th>우편번호</th>
+                    <td colspan="3">
+                        <input class="text" style="width: 70px;" type="text" name="student_post" value="" readonly required/>&nbsp;<button type="button" class="search getAddr">주소 검색</button>
+                        <br />
+                        <input class="text mt_10" style="width:400px;" type="text" name="student_addr" readonly required/>
+                        <input class="text mt_10" style="width:278px;" type="text" name="student_addr1" placeholder="상세주소" required/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>학교명</th>
+                    <td><input class="text" type="text" name="student_sch" required/></td>
+                    <th>학과명</th>
+                    <td><input class="text" type="text" name="student_dept" required/></td>
+                </tr>
+                <tr>
+                    <th>학번</th>
+                    <td><input class="text" type="text" name="student_no" required/></td>
+                    <th>학년</th>
+                    <td><input class="text" type="text" name="student_grade" required/></td>
+                </tr>
+                <tr>
+                    <th>반</th>
+                    <td><input class="text" type="text" name="student_class" required/></td>
+                    <th colspan="2" />
+                </tr>
+            </tbody>
+        </table>
+        <div style="width:200px; margin: 0 auto; text-align: center;">
+            <input type="submit" class="search pt_20" value="회원가입">
+            <input type="button" onclick="history.back()" class="search pt_20" value="가입취소">
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    $(function() {
+        $(".getAddr").click(function() {
+            let openPopAddress = window.open('http://localhost:8080/api/address', 'addressPop', 'width=500, height=700, resizable=no, scrollbars=no, status=no, titlebar=no, toolbar=no, menubar=no, location=no')
+            if (!openPopAddress) {
+                alert("팝업 차단을 해제해주세요.");
+            }
+        });
+    })
+</script>
+</body>
+</html>

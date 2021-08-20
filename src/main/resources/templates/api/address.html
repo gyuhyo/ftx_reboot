@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>주소검색</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        * {
+            user-select: none;
+        }
+        body {
+            margin: 0px;
+            padding: 0px;
+            overflow: hidden;
+        }
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        ul li {
+            width: 100%;
+            line-height: 30px;
+            background: #fff;
+            border-bottom: 1px solid #ececec;
+            padding: 7px;
+            box-sizing: border-box;
+            cursor: pointer;
+        }
+
+        ul li:hover {
+            color: #008cff;
+        }
+
+        ul li:nth-child(even) {
+            background: #efefef;
+        }
+
+        .flex-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .flex-container > .flex-address-header {
+            flex: 7%;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            box-shadow: 0px 2px 10px #747474;
+            z-index: 9999;
+        }
+
+        .flex-address-header > input[type='text'] {
+            flex: 80%;
+        }
+
+        .flex-address-header > button {
+            flex: auto;
+        }
+
+        .flex-container > .flex-address-list {
+            flex: 93%;
+            background: #eeeeee;
+            overflow-y: auto;
+        }
+    </style>
+    <script type="text/javascript">
+        $(() => {
+            /**
+             * 주소 검색 함수
+             */
+            $("#getBtn").click(function(){
+                /**
+                 * 함수 호출시 기본값
+                 */
+                let page = 1;
+                const size = 10;
+                $.ajax({
+                    url: 'https://dapi.kakao.com/v2/local/search/address.json?query=' + $("#addressText").val() + '&page=' + page + '&size=' + size,
+                    type: 'GET',
+                    dataType: 'json',
+                    beforeSend: (xhr) => {
+                        xhr.setRequestHeader("Authorization", "KakaoAK cf3dd615ba6261e0e7aa6c415ce59b58");
+                    },
+                    success: (response) => {
+                        let data = response.documents;
+                        if (data.length === 0) {
+                            alert("데이터가 존재하지 않습니다.");
+                            return;
+                        }
+
+                        $(".flex-address-list > ul").empty();
+
+                        data.map((val, idx) => {
+                            $(".flex-address-list > ul").append(
+                                '<li>[우편번호] <span class="zip_no">' + val.road_address.zone_no + '</span>' +
+                                '<br>[주소] <span class="address">' + val.road_address.address_name + '</span></li>'
+                            );
+                        });
+                    }
+                })
+            });
+
+            $(document).on("click", ".flex-address-list > ul li", function() {
+                let zip_no = $(this).find(".zip_no").text();
+                let address = $(this).find(".address").text();
+
+                if (zip_no === "") {
+                    alert("우편번호가 존재하지 않습니다.\n좀 더 상세한 주소를 입력해주세요.");
+                    return;
+                }
+
+                $(opener.document).find("input[name='student_post']").val(zip_no);
+                $(opener.document).find("input[name='student_addr']").val(address);
+                self.close();
+            })
+        })
+    </script>
+</head>
+<body>
+    <div class="flex-container">
+        <div class="flex-address-header">
+            <input type="text" id="addressText" placeholder="주소를 상세하게 입력해주세요."/>
+            <button id="getBtn">검색</button>
+        </div>
+        <div class="flex-address-list">
+            <ul></ul>
+        </div>
+    </div>
+</body>
+</html>
