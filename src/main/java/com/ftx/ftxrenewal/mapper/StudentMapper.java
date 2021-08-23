@@ -7,10 +7,13 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.HashMap;
+
 @Mapper
 public interface StudentMapper {
 
-    public long register_login_info(Login login);
-    public void register_student_info(Student student);
+    void register_login_info(Login login);
+    void register_student_info(Student student);
+    void register_user_role_set(HashMap<String, Object> userRole);
 
 }

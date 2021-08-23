@@ -2,12 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ftx.ftxrenewal.mapper.StudentMapper">
 
-    <insert id="register_login_info" parameterType="com.ftx.ftxrenewal.dto.Login" keyProperty="login_idx">
+    <insert id="register_login_info" parameterType="com.ftx.ftxrenewal.dto.Login" useGeneratedKeys="true" keyProperty="login_idx">
         insert into login_info (
             login_id, login_pswd, login_name, reg_date, reg_ip, lastlogin_date, lastlogin_ip
         ) values (
-            #{login_id}, #{login_pswd}, #{login_name}, #{reg_date}, #{reg_ip}, #{reg_date}, #{reg_ip}
-        )
+                     #{login_id}, #{login_pswd}, #{login_name}, #{reg_date}, #{reg_ip}, #{reg_date}, #{reg_ip}
+                 )
     </insert>
 
     <insert id="register_student_info">
@@ -15,9 +15,13 @@
             student_idx, student_name, student_birth, student_gender, student_hp, student_phone, student_email,
             student_post, student_addr, student_addr1, student_sch, student_dept, student_no, student_grade, student_class, mod_date
         ) values (
-            #{student_idx}, #{student_name}, #{student_birth}, #{student_gender}, #{student_hp}, #{student_phone}, #{student_email},
-            #{student_post}, #{student_addr}, #{student_addr1}, #{student_sch}, #{student_dept}, #{student_no}, #{student_grade}, #{student_class}, #{mod_date}
-        )
+                     #{student_idx}, #{student_name}, #{student_birth}, #{student_gender}, #{student_hp}, #{student_phone}, #{student_email},
+                     #{student_post}, #{student_addr}, #{student_addr1}, #{student_sch}, #{student_dept}, #{student_no}, #{student_grade}, #{student_class}, #{mod_date}
+                 )
+    </insert>
+
+    <insert id="register_user_role_set">
+        insert into user_role_set (user_login_idx, role_set) values (#{user_login_idx}, #{role_set})
     </insert>
 
 </mapper>

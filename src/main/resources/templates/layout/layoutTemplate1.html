@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <th:block th:fragment="setContent(content)">
+        <head>
+            <meta charset="UTF-8">
+            <title>회원가입</title>
+            <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <link rel="stylesheet" href="https://ftx.bsks.ac.kr//include/css/librery/normalize.css" type="text/css" />
+            <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
+            <link rel="stylesheet" href="https://ftx.bsks.ac.kr//include/css/common.css"/>
+            <link rel="stylesheet" href="https://ftx.bsks.ac.kr//include/css/base.css"/>
+            <link rel="stylesheet" href="https://ftx.bsks.ac.kr//include/css/main.css"/>
+            <link rel="stylesheet" href="https://ftx.bsks.ac.kr//include/css/layout.css"/>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+        </head>
+        <body>
+            <div id="main_header">
+                <div class="logo_div">
+                    <img src="https://ftx.bsks.ac.kr/images/main/main_logo.svg" alt="부산경상대학교 현장실습운영관리시스템" />
+                    <a href="#" class="pop_bt" role="center"><img src="https://ftx.bsks.ac.kr/images/main/main_logo2.png" alt="링크플러스" class="linc_logo" /></a>
+                </div>
+            </div>
+            <div class="main_con" style="width: 800px;">
+                <th:block th:replace = "${content}"></th:block>
+            </div><!-- main_con fin -->
+            <div id="main_footer">
+                <div class="main_footer">
+                    <img src="https://ftx.bsks.ac.kr/images/main/main_footer.svg" alt="부산경상대학교 로고" class="fl mr_30" />
+                    <ul class="fl">
+                        <li>우편번호 : 47583</li>
+                        <li>주소 : 부산광역시 연제구 고분로 170 (연산동 277-4번지)</li>
+                        <li>대표전화 : 051-850-1360</li><br />
+                        <li>사업자번호 : 607-82-05457</li>
+                        <li>상호명 : 부산경상대학교 앱버튼</li>
+                        <li>대표자 : 이재민 총장</li><br />
+                        <li>Copyright (C) Busan KyungSang College All rights Reserved.</li>
+                    </ul>
+                </div>
+                <div class="cb"></div>
+            </div><!-- main_footer fin -->
+        </body>
+    </th:block>
+</html>
